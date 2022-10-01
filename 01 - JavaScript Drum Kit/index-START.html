@@ -61,6 +61,7 @@
  function playSound(e) {
     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`) //creates audio variable for triggering sound
     const key = document.querySelector(`.key[data-key="${e.keyCode}"]`); //creates key variable for animating
+    console.log(audio);
     if(!audio) return;  //ends the script if there is no audio triggered by the key press
     audio.currentTime = 0; //rewind to the start when you press the key again
     audio.play();

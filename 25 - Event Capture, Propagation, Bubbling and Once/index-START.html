@@ -41,8 +41,21 @@
 </style>
 
 <button></button>
-<script>
 
+<script>
+  const divs = document.querySelectorAll('div');
+
+  function logText(e) {
+    console.log(this.classList.value);
+    // e.stopPropagation(); //stop bubbling
+  }
+
+  divs.forEach(div => div.addEventListener('click', logText, {
+    // capture: true, //this makes it happen in capture order rather than bubble order
+    // once: true //listens once and then unbinds listener
+  }));
 </script>
+
+
 </body>
 </html>
