@@ -37,21 +37,67 @@
     
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    function filterBirth(start, end) { //turned it into a function that will find within a specified range
+      const fifteen = inventors.filter(function(inventor) {
+        if(inventor.year >= start && inventor.year < end) {
+          return true; // this means we keep it
+        }
+      })
+      console.table(fifteen);
+    }
+        //same but on one line:
+        //const fifteen = inventors.filter(inventor => if(inventor.year >= 1500 && inventor.year < 1600))
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
+    function map() {
+      const fullNames = inventors.map(inventor => inventor.first + " " + inventor.last);
+      console.log(fullNames);
+    }
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    function sort() {
+      const ordered = inventors.sort(function(a, b) {
+        if(a.year > b.year) {
+          return 1;
+        } else {
+          return -1;
+        }
+      })
+      console.table(ordered);
+    }
+          // same thing in one line
+          // const ordered = inventors.sort((a,b) => a.year > b.year ? 1 : -1)
+          // the last bit is called a ternary operator
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+    function reduce() {
+      const totalYears = inventors.reduce((total, inventor) => {
+        return total + (inventor.passed - inventor.year)
+      }, 0)
+      console.log(totalYears);
+    }
 
     // 5. Sort the inventors by years lived
+    function sortLifespan() {
+      const oldest = inventors.sort(function(a, b) {
+        const lastGuy = a.passed - a.year;
+        const nextGuy = b.passed - b.year;
+        if (lastGuy > nextGuy) {
+          return -1;
+        } else {
+          return +1;
+        }
+      })
+      console.table(oldest);
+    }
+          //with ternary operator instead
+          // return lastguy > nextguy ? -1 : 1;
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
