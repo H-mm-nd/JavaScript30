@@ -98,14 +98,43 @@
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+    function findDe() {
+      const category = document.querySelector('.mw-category');         // this can also be done using document.querySelectorAll('.mw-content-ltr a')
+      const links = [...category.querySelectorAll('a')];                     //looking inside an element instead of document
+        //the above creates a list of all the links
+        //[...    ] is the spread command and it takes the nodelist created by queryselector and makes it into an array
+      const de = links                                                   // crazy new notation!
+                    .map(link => link.textContent)                     // array of every link
+                    .filter(streetName => streetName.includes('de'));
+    }
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    function sortNames(){
+        const alpha = people.sort(function(lastOne, nextOne) {
+          const [aLast, aFirst] = lastOne.split(', ');
+          const [bLast, bFirst] = nextOne.split(', ');
+          return aLast > bLast ? 1 : -1;
+      })
+      console.log(alpha);
+    }
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
 
+    function tally() {
+      const transportation = data.reduce(function(obj, item) {
+        if (!obj[item]) { //checks to see if there is an item
+          obj[item] = 0   //adds it starting at zero if not
+        }
+        obj[item]++;    //increments the tally
+        return obj;
+      }, { }) //function starts with a blank object
+      console.log(transportation);
+    }
+
   </script>
 </body>
 </html>
+ 
